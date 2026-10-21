@@ -1,0 +1,61 @@
+.hero{
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    text-align: center;
+    padding: 2rem;
+    background: radial-gradient(circle at top, #1f0a0b 0%, var(--cor-fundo)60%)
+
+}
+
+.hero-etiqueta{
+    color: var(--cor-destaque);
+    text-transform: uppercase; 
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+.hero-titulo{
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    line-height: 1.1;
+    max-width: 800px;
+}
+.hero-destaque{
+    color:var(--cor-destaque);
+}
+.hero-texto{
+    color: var(--cor-texto-suave);
+    max-width: 520px;
+}
+.hero-acoes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.hero-botao,
+.hero-botao-secundario{
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+.hero-botao{
+    background: var(--cor-destaque);
+    color: var(--cor-texto);
+}
+.hero-botao:hover{
+    background: var(--cor-destaque-hover);
+}
+.hero-botao-secundario{
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+}
+.hero-botaosecundario:hover{
+    border-color: var(--cor-destaque);
+}
