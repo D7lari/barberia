@@ -27,4 +27,11 @@ export const cortes = [
         preco: 70,
         imagem: null,
     },
+    {
+        id: 5,
+        nome: 'Pezinho',
+        descricao: "Acabamento do contorno com navalha, deixando o corte mais limpo e definido.",
+        preco: 15,
+        imagem: null,
+    },
 ]
