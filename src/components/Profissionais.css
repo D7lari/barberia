@@ -19,7 +19,7 @@
 .prof-grade{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15rem;
+    gap: 1.5rem;
 }
 .prof-card{
     background: var(--cor-superficie);

@@ -3,7 +3,7 @@ import { profissionais } from '../data/profissionais.js'
 
 function pegarIniciais(nome) {
     return nome
-    .split('')
+    .split(' ')
     .map((parte) => parte[0])
     .slice(0,2)
     .join('')
