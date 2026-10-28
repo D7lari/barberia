@@ -1,0 +1,108 @@
+.pac{
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    scroll-margin-top: 5rem;
+}
+
+.pac-titulo{
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    text-align: center;
+}
+.pac-titulo-destaque{
+    color: var(--cor-destaque);
+}
+.pac-subtitulo{
+    text-align: center;
+    color: var(--cor-texto-suave);
+    margin: 0.5rem 0 3rem;
+}
+.pac-grade{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+.pac-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+}
+.pac-card::hover{
+    border-color: var(--cor-destaque);
+    transform: translateY(-4px);
+}
+.pac-card-destaque{
+    border-color: var(--cor-destaque);
+}
+
+.pac-selo {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cor-destaque);
+  color: var(--cor-texto);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+}
+.pac-nome {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+.pac-descricao{
+    color: var(--cor-texto-suave);
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+}
+.pac-itens{
+    list-style: nome;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+.pac-itens li{
+    padding: 0.35rem 0;
+    font-size: 0.95rem;
+}
+.pac-itens li::before{
+   content: '✓ ';
+   color: var(--cor-destaque);
+   font-weight: 800;
+}
+.pac-preco-antigo{
+    color: var(--cor-texto-suave);
+    font-size: 0.9rem;
+    text-decoration: line-through;
+}
+.pac-preco{
+    color: var(--cor-destaque);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+}
+.pac-botao{
+    display: block;
+    text-align: center;
+    background: var(--cor-destaque);
+    color: var(--cor-texto);
+    padding: 0.8rem;     
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.pac-botao:hover{
+    background: var(--cor-destaque-hover); 
+}
+
+
+
