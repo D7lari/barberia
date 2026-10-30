@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import Cortes from './components/Cortes'
 import Profissionais from './components/Profissionais'
 import Pacotes from './components/Pacotes'
+import Agendamento from './components/Agendamento'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Cortes />
         <Profissionais />
         <Pacotes />
+        <Agendamento />
       </main>
     </>
   )
