@@ -2,10 +2,12 @@ import { useState } from 'react'
 import './Agendamento.css'
 import { profissionais } from '../data/profissionais.js'
 import { gerarDias } from '../data/dias.js'
+import { horarios } from '../data/horarios.js'
 
 function Agendamento() {
     const [profissionalId, setProfissionalId] = useState(null)
     const [diaId, setDiaId] = useState(null)
+    const [horario, setHorario] = useState(null)
 
     const dias = gerarDias(7)
 
@@ -50,11 +52,39 @@ function Agendamento() {
                                         ? 'agend-opcao agend-dia agend-opcao-ativa'
                                         : 'agend-opcao agend-dia'
                                 }
-                                onClick={() => setDiaId(dia.id)}
+                                onClick={() => {
+                                    setDiaId(dia.id)
+                                    setHorario(null)
+                                }}
                             >
                                 <span className="agend-dia-semana">{dia.semana}</span>
                                 <span className="agend-dia-numero">{dia.numero}</span>
                                 <span className="agend-dia-mes">{dia.mes}</span>
+                            </button>
+                        ))}
+                    </div>
+                </>
+            )}
+
+
+            {diaId !== null && (
+                <>
+
+                    <h3 className="agend-passo">3. Escolha seu hórario</h3>
+                    <div className="agend-horarios">
+                        {horarios.map((hora) =>(
+                            <button
+                                key={hora}
+                                type="button"
+                                className={
+                                    horario === hora
+                                    ? 'agend-opcao agend-horario agend-opcao-ativaa'
+                                    : 'agend-opcao agend-horario'
+                                }
+                                onClick={() => setHorario(hora)}
+                            >
+                                {hora}
+
                             </button>
                         ))}
                     </div>
