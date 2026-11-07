@@ -16,3 +16,42 @@
     color: var(--cor-texto-suave);
     margin: 0.5rem 0 3rem;
 }
+.agend-passo{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.agend-opcoes{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+} 
+.agend-opcao{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    color: var(--cor-texto);
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+}
+.agend-opcao:hover{
+    border-color: var(--cor-destaque);
+    transform: translateY(-4px);
+}
+.agend-opcao-ativa{
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 1px var(--cor-destaque);
+}
+.agend-opcao-nome{
+    font-size: 1.1rem;
+    font-weight: 0.9rem;
+}
+.agend-opcao-detalhe{
+    color: var(--cor-texto-suave);
+    font-size: 0.9rem;
+}
