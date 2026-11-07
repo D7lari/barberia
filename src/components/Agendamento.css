@@ -55,3 +55,27 @@
     color: var(--cor-texto-suave);
     font-size: 0.9rem;
 }
+.agend-dias{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+.agend-dia{
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0.5rem;
+}
+.agend-dia-semana{
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--cor-texto-suave);
+}
+.agend-dia-numero{
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+.agend-dia-mes{
+    font-size: 0.8rem;
+    color: var(--cor-texto-suave);
+}

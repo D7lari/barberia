@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import './Agendamento.css'
 import { profissionais } from '../data/profissionais.js'
+import { gerarDias } from '../data/dias.js'
 
 function Agendamento() {
     const [profissionalId, setProfissionalId] = useState(null)
+    const [diaId, setDiaId] = useState(null)
+
+    const dias = gerarDias(7)
 
     return (
         <section className="agend" id="agendar">
@@ -32,6 +36,30 @@ function Agendamento() {
                     </button>
                 ))}
             </div>
+
+            {profissionalId !== null && (
+                <>
+                    <h3 className="agend-passo">2. Escolha o dia</h3>
+                    <div className="agend-dias">
+                        {dias.map((dia) => (
+                            <button
+                                key={dia.id}
+                                type="button"
+                                className={
+                                    diaId === dia.id
+                                        ? 'agend-opcao agend-dia agend-opcao-ativa'
+                                        : 'agend-opcao agend-dia'
+                                }
+                                onClick={() => setDiaId(dia.id)}
+                            >
+                                <span className="agend-dia-semana">{dia.semana}</span>
+                                <span className="agend-dia-numero">{dia.numero}</span>
+                                <span className="agend-dia-mes">{dia.mes}</span>
+                            </button>
+                        ))}
+                    </div>
+                </>
+            )}
         </section>
     )
 }
