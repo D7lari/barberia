@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './Agendamento.css'
 import { profissionais } from '../data/profissionais.js'
 import { gerarDias } from '../data/dias.js'
-import { horarios } from '../data/horarios.js'
+
 
 function Agendamento() {
     const [profissionalId, setProfissionalId] = useState(null)
@@ -10,6 +10,13 @@ function Agendamento() {
     const [horario, setHorario] = useState(null)
 
     const dias = gerarDias(7)
+
+    const profissionalEscolhido = profissionais.find(
+        (pessoa) => pessoa.id === profissionalId
+    )
+    const horariosDisponiveis = profissionalEscolhido
+        ? profissionalEscolhido.horarios
+        : []
 
     return (
         <section className="agend" id="agendar">
@@ -31,7 +38,10 @@ function Agendamento() {
                                 ? 'agend-opcao agend-opcao-ativa'
                                 : 'agend-opcao'
                         }
-                        onClick={() => setProfissionalId(pessoa.id)}
+                        onClick={() => {
+                            setProfissionalId(pessoa.id)
+                            setHorario(null)
+                        }}
                     >
                         <span className="agend-opcao-nome">{pessoa.nome}</span>
                         <span className="agend-opcao-detalhe">{pessoa.especialidade}</span>
@@ -72,7 +82,7 @@ function Agendamento() {
 
                     <h3 className="agend-passo">3. Escolha seu hórario</h3>
                     <div className="agend-horarios">
-                        {horarios.map((hora) =>(
+                        {horariosDisponiveis.map((hora) =>(
                             <button
                                 key={hora}
                                 type="button"
