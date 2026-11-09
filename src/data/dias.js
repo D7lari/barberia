@@ -14,7 +14,8 @@ export function gerarDias(quantidade = 7) {
             id: `${ano}-${mes}-${dia}`,
             semana: data.toLocaleDateString('pt-BR' , {weekday: 'short'}).replace('.', ''),
             numero: dia,
-            mes: data.toDateString('pt-BR',{ month: 'short' }).replace('.', ''),
+            mes: data.toLocaleDateString('pt-BR',{ month: 'short' }).replace('.', ''),
+            ano: ano,
         })
     }
     

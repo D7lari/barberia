@@ -3,6 +3,9 @@ import './Agendamento.css'
 import { profissionais } from '../data/profissionais.js'
 import { gerarDias } from '../data/dias.js'
 
+function capitalizar(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1)
+}
 
 function Agendamento() {
     const [profissionalId, setProfissionalId] = useState(null)
@@ -17,7 +20,9 @@ function Agendamento() {
     const horariosDisponiveis = profissionalEscolhido
         ? profissionalEscolhido.horarios
         : []
+    
 
+    const diaEscolhido = dias.find((dia) => dia.id === diaId)
     return (
         <section className="agend" id="agendar">
             <h2 className="agend-titulo">
@@ -100,6 +105,31 @@ function Agendamento() {
                     </div>
                 </>
             )}
+
+
+
+            {horario !== null && (
+                <div className="agend-resumo">
+                    <h3 className="agend-passo">Resumo do agendamento</h3>
+                    <ul className="agend-resumo-lista">
+                        <li>
+                            <span>Profissional</span>
+                            <strong> {profissionalEscolhido.nome} </strong>
+                        </li>
+                        <li>
+                            <span>Dia</span>
+                            <strong>
+                                {capitalizar(diaEscolhido.semana)}, {diaEscolhido.numero} de {capitalizar(diaEscolhido.mes)} {diaEscolhido.ano}
+                            </strong>
+                        </li>
+                        <li>
+                            <span>Horário</span>
+                            <strong> {horario}</strong>
+                        </li>
+                    </ul>
+                </div>
+            )}
+
         </section>
     )
 }
