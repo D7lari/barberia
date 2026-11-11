@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './Agendamento.css'
 import { profissionais } from '../data/profissionais.js'
 import { gerarDias } from '../data/dias.js'
+import { formasPagamento } from '../data/pagamento.js'
 
 function capitalizar(texto) {
     return texto.charAt(0).toUpperCase() + texto.slice(1)
@@ -11,6 +12,8 @@ function Agendamento() {
     const [profissionalId, setProfissionalId] = useState(null)
     const [diaId, setDiaId] = useState(null)
     const [horario, setHorario] = useState(null)
+    const [formaId, setformaId] = useState(null)
+    const [local, setLocal] = useState(null)
 
     const dias = gerarDias(7)
 
@@ -20,9 +23,11 @@ function Agendamento() {
     const horariosDisponiveis = profissionalEscolhido
         ? profissionalEscolhido.horarios
         : []
-    
+
 
     const diaEscolhido = dias.find((dia) => dia.id === diaId)
+
+    const formaEscolhida = formasPagamento.find((forma) => forma.id === formaId)
     return (
         <section className="agend" id="agendar">
             <h2 className="agend-titulo">
@@ -87,14 +92,14 @@ function Agendamento() {
 
                     <h3 className="agend-passo">3. Escolha seu hórario</h3>
                     <div className="agend-horarios">
-                        {horariosDisponiveis.map((hora) =>(
+                        {horariosDisponiveis.map((hora) => (
                             <button
                                 key={hora}
                                 type="button"
                                 className={
                                     horario === hora
-                                    ? 'agend-opcao agend-horario agend-opcao-ativaa'
-                                    : 'agend-opcao agend-horario'
+                                        ? 'agend-opcao agend-horario agend-opcao-ativaa'
+                                        : 'agend-opcao agend-horario'
                                 }
                                 onClick={() => setHorario(hora)}
                             >
@@ -103,6 +108,71 @@ function Agendamento() {
                             </button>
                         ))}
                     </div>
+                </>
+            )}
+
+            {horario !== null && (
+                <>
+                    <h3 className="agend-passo">4. Forma de pagamento</h3>
+                    <div className="agend-pagamentos">
+                        {formasPagamento.map((forma) => (
+                            <button
+                                key={forma.id}
+                                type="button"
+                                className={
+                                    formaId === forma.id
+                                        ? 'agend-opcao agend-opcao-ativa'
+                                        : 'agend-opcao'
+                                }
+                                onClick={() => {
+                                    setformaId(forma.id)
+                                    setLocal(forma.soNaLoja ? 'loja' : null)
+                                }}
+                            >
+
+                                <span className="agend-opcao-nome">{forma.nome}</span>
+                                <span className="agend-opcao-detalhe">{forma.detalhe}</span>
+
+                            </button>
+                        ))}
+                    </div>
+
+                    {formaId !== null && (
+                        <>
+                            <h3 className="agend-passo">5. Onde você quer pagar?</h3>
+                            <div className="agend-pagamentos">
+                                <button
+                                    type="button"
+                                    disabled={formaEscolhida.soNaLoja}
+                                    className={
+                                        local === 'site'
+                                            ? 'agend-opcao agend-opcao-ativa'
+                                            : 'agend-opcao'
+                                    }
+                                    onClick={() => setLocal('site')}
+                                >
+                                    <span className="agend-opcao-nome">Pagar pelo site</span>
+                                    <span className="agend-opcao-detalhe">
+                                        Você será levado à área de pagamento
+                                    </span>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={
+                                        local === 'loja'
+                                            ? 'agend-opcao agend-opcao-ativa'
+                                            : 'agend-opcao'
+                                    }
+                                    onClick={() => setLocal('loja')}
+                                >
+                                    <span className="agend-opcao-nome">Pagar na loja</span>
+                                    <span className="agend-opcao-detalhe">
+                                        Você paga presencialmente no dia
+                                    </span>
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </>
             )}
 
