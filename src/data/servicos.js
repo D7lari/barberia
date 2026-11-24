@@ -1,7 +1,7 @@
 import { cortes } from './cortes.js'
 import { pacotes } from './pacotes.js'
 
-export const srevicos = [
+export const servicos = [
     ...cortes.map((corte) => ({
         id: `cortes-${corte.id}`,
         nome: corte.nome,
