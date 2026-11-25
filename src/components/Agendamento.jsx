@@ -23,6 +23,7 @@ function Agendamento() {
     const [local, setLocal] = useState(null)
     const [confirmado, setConfirmado] = useState(false)
     const [servicosSelecionados, setServicosSelecionados] = useState([])
+    const [pago, setPago] = useState(false)
 
     const dias = gerarDias(7)
 
@@ -45,6 +46,7 @@ function Agendamento() {
         setServicosSelecionados([])
         setLocal(null)
         setConfirmado(false)
+        setPago(false)
     }
     const horariosDisponiveis = profissionalEscolhido
         ? profissionalEscolhido.horarios
@@ -63,7 +65,7 @@ function Agendamento() {
         return (
             <section className="agend" id="agendar">
                 <div className="agend-sucesso">
-                    {local === 'loja' ? (
+                    {local === 'loja' && (
                         <>
                             <h2 className="agend-titulo">
                                 Agendamento <span className="agend-titulo-destaque">realizado</span>
@@ -72,13 +74,43 @@ function Agendamento() {
                                 Agendamento realizado com sucesso! O pagamento será realizado em loja.
                             </p>
                         </>
-                    ) : (
+                    )}
+
+                    {local === 'site' && !pago && (
                         <>
                             <h2 className="agend-titulo">
-                                Área de <span className="agend-titulo-destaque">Pagamento</span>
+                                Área de <span className="agend-titulo-destaque">pagamento</span>
                             </h2>
                             <p className="agend-sucesso-texto">
-                                EM breve: aqui ficará o pagamento pelo site.
+                                Total a pagar: <strong>{formatarPreco(total)}</strong> ({formaEscolhida.nome})
+                            </p>
+
+                            {formaEscolhida.id === 'pix' ? (
+                                <>
+                                    <div className="agend-pix-qr">QR Code (simulação)</div>
+                                    <p className="agend-sucesso-texto">
+                                        Aqui apareceria o QR Code do Pix gerado pelo serviço de pagamento.
+                                    </p>
+                                </>
+                            ) : (
+                                <p className="agend-sucesso-texto">
+                                    Aqui você seria levado ao ambiente seguro do serviço de pagamento para informar os dados do cartão.
+                                </p>
+                            )}
+
+                            <button type="button" className="agend-confirmar" onClick={() => setPago(true)}>
+                                Simular pagamento aprovado
+                            </button>
+                        </>
+                    )}
+
+                    {local === 'site' && pago && (
+                        <>
+                            <h2 className="agend-titulo">
+                                Pagamento <span className="agend-titulo-destaque">confirmado</span>
+                            </h2>
+                            <p className="agend-sucesso-texto">
+                                Agendamento realizado com sucesso! Seu pagamento de {formatarPreco(total)} foi confirmado.
                             </p>
                         </>
                     )}
